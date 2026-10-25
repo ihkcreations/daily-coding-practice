@@ -3,8 +3,10 @@
 #include <algorithm>
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
     int k;
-    std::cin >> k;
+    if (!(std::cin >> k)) return 0;
     while (k--) {
         int n;
         std::cin >> n;
@@ -20,7 +22,7 @@ int main() {
                 max_side = side;
             }
         }
-        std::cout << max_side << std::endl;
+        std::cout << max_side << "\n";
     }
     return 0;
 }
