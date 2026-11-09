@@ -8,24 +8,35 @@ struct LoanDetails {
   int years;
 };
 
-void calculateLoan(const LoanDetails& loan) {
+void calculateLoan(const LoanDetails& loan) {  
   double monthlyRate = loan.annualRate / 12.0 / 100.0;
   int totalMonths = loan.years * 12;
   double monthlyPayment = 0.0;
   if (monthlyRate > 0.0) {
     double factor = std::pow(1.0 + monthlyRate, totalMonths);
     monthlyPayment = loan.principal * monthlyRate * factor / (factor - 1.0);
-  } else {
+  } else {  
     monthlyPayment = loan.principal / totalMonths;
   }
   double totalPayment = monthlyPayment * totalMonths;
   double totalInterest = totalPayment - loan.principal;
   std::cout << std::fixed << std::setprecision(2);
   std::cout << "Principal: $" << loan.principal << "\n";
-  std::cout << "Annual Rate: " << loan.annualRate << "%\n";
+  std::cout << "Annual Rate: " << loan.annualRate << "%\n";  
   std::cout << "Term: " << loan.years << " years\n";
   std::cout << "Monthly Payment: $" << monthlyPayment << "\n";
   std::cout << "Total Interest: $" << totalInterest << "\n";
   std::cout << "----------------------------------------\n";
 }
+
+int main() {  
+  LoanDetails sample1 = {250000.0, 5.5, 30};
+  LoanDetails sample2 = {15000.0, 7.0, 5};
+  LoanDetails sample3 = {300000.0, 3.75, 15};
+  calculateLoan(sample1);
+  calculateLoan(sample2);
+  calculateLoan(sample3);
+  return 0;  
+}
+
 
